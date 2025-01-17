@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Capital - Intelligenter Baukosten Rechner</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="bi bi-house-heart-fill"></i> House Capital</a>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Ihr Weg zum Traumhaus beginnt hier</h1>
+                <p>Berechnen Sie präzise die Baukosten für Ihr Eigenheim mit unserem intelligenten Rechner</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="bi bi-calculator"></i> Baukosten Rechner</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="calculationForm">
+                            <div class="form-check mb-4">
+                                <input class="form-check-input" type="checkbox" id="include_property" checked>
+                                <label class="form-check-label" for="include_property">
+                                    Grundstück in Berechnung einbeziehen
+                                </label>
+                            </div>
+                            
+                            <div id="property_area_group" class="mb-3">
+                                <label for="property_area" class="form-label">
+                                    <i class="bi bi-rulers"></i> Grundstücksfläche (m²)
+                                    <i class="bi bi-info-circle" data-bs-toggle="tooltip" title="Die Gesamtfläche des Grundstücks"></i>
+                                </label>
+                                <input type="number" class="form-control" id="property_area" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="living_area" class="form-label">
+                                    <i class="bi bi-house-door"></i> Wohnfläche (m²)
+                                    <i class="bi bi-info-circle" data-bs-toggle="tooltip" title="Die geplante Wohnfläche des Hauses"></i>
+                                </label>
+                                <input type="number" class="form-control" id="living_area" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="window_area" class="form-label">
+                                    <i class="bi bi-window"></i> Fensterfläche (m²)
+                                    <i class="bi bi-info-circle" data-bs-toggle="tooltip" title="Die gesamte Fensterfläche des Hauses"></i>
+                                </label>
+                                <input type="number" class="form-control" id="window_area" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="location" class="form-label">
+                                    <i class="bi bi-geo-alt"></i> Stadt
+                                    <i class="bi bi-info-circle" data-bs-toggle="tooltip" title="Der Standort beeinflusst die Baukosten"></i>
+                                </label>
+                                <select class="form-select" id="location" required>
+                                    <option value="">Bitte wählen Sie eine Stadt</option>
+                                    <option value="München">München</option>
+                                    <option value="Hamburg">Hamburg</option>
+                                    <option value="Berlin">Berlin</option>
+                                    <option value="Frankfurt">Frankfurt</option>
+                                    <option value="Köln">Köln</option>
+                                    <option value="Stuttgart">Stuttgart</option>
+                                    <option value="Düsseldorf">Düsseldorf</option>
+                                    <option value="Dresden">Dresden</option>
+                                    <option value="Leipzig">Leipzig</option>
+                                    <option value="Hannover">Hannover</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="isolation_type" class="form-label">
+                                    <i class="bi bi-shield-check"></i> Dämmstandard
+                                    <i class="bi bi-info-circle" data-bs-toggle="tooltip" title="Höhere Standards bedeuten mehr Energieeffizienz"></i>
+                                </label>
+                                <select class="form-select" id="isolation_type" required>
+                                    <option value="">Bitte wählen Sie einen Standard</option>
+                                    <option value="basic">Standard (EnEV)</option>
+                                    <option value="enhanced">Erhöht (KfW 55)</option>
+                                    <option value="premium">Premium (KfW 40)</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="equity" class="form-label">
+                                    <i class="bi bi-piggy-bank"></i> Eigenkapital (€)
+                                    <i class="bi bi-info-circle" data-bs-toggle="tooltip" title="Ihr verfügbares Eigenkapital für die Finanzierung"></i>
+                                </label>
+                                <input type="number" class="form-control" id="equity" required>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="credit_years" class="form-label">
+                                    <i class="bi bi-calendar-check"></i> Kreditlaufzeit (Jahre)
+                                    <i class="bi bi-info-circle" data-bs-toggle="tooltip" title="Die gewünschte Laufzeit des Kredits"></i>
+                                </label>
+                                <select class="form-select" id="credit_years" required>
+                                    <option value="">Bitte wählen Sie die Laufzeit</option>
+                                    <option value="10">10 Jahre</option>
+                                    <option value="15">15 Jahre</option>
+                                    <option value="20">20 Jahre</option>
+                                    <option value="25">25 Jahre</option>
+                                    <option value="30">30 Jahre</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="bi bi-calculator"></i> Jetzt berechnen
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card" id="resultCard" style="display: none;">
+                    <div class="card-header">
+                        <h3><i class="bi bi-graph-up"></i> Ihre Ergebnisse</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="result-item">
+                            <h4><i class="bi bi-house-fill"></i> Hauskosten:</h4>
+                            <p id="houseCost">-</p>
+                        </div>
+                        <div class="result-item">
+                            <h4><i class="bi bi-geo-fill"></i> Grundstückskosten:</h4>
+                            <p id="propertyCost">-</p>
+                        </div>
+                        <div class="result-item">
+                            <h4><i class="bi bi-cash-stack"></i> Gesamtkosten:</h4>
+                            <p id="totalCost">-</p>
+                        </div>
+                        <div class="result-item">
+                            <h4><i class="bi bi-bank"></i> Kreditbetrag:</h4>
+                            <p id="creditAmount">-</p>
+                        </div>
+                        <div class="result-item">
+                            <h4><i class="bi bi-percent"></i> Zinssatz:</h4>
+                            <p id="interestRate">-</p>
+                        </div>
+                        <div class="result-item">
+                            <h4><i class="bi bi-calendar-check"></i> Monatliche Rate:</h4>
+                            <p id="monthlyPayment">-</p>
+                        </div>
+                        <div class="result-item">
+                            <h4><i class="bi bi-currency-euro"></i> Gesamte Zinsen:</h4>
+                            <p id="totalInterest">-</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="info-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="info-card">
+                        <i class="bi bi-graph-up-arrow"></i>
+                        <h3>Präzise Berechnung</h3>
+                        <p>Unsere Algorithmen berücksichtigen alle wichtigen Faktoren für eine genaue Kostenkalkulation.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-card">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <h3>Regionale Preise</h3>
+                        <p>Standortbasierte Berechnung mit aktuellen Marktpreisen für Ihre Region.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-card">
+                        <i class="bi bi-bank"></i>
+                        <h3>Finanzierungsoptionen</h3>
+                        <p>Individuelle Berechnung der Finanzierung basierend auf Ihrem Eigenkapital.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="feature-item">
+                        <i class="bi bi-shield-check"></i>
+                        <div class="feature-text">
+                            <h4>Energieeffizienz-Standards</h4>
+                            <p>Wählen Sie zwischen verschiedenen Dämmstandards und deren Auswirkungen auf die Baukosten.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="feature-item">
+                        <i class="bi bi-currency-euro"></i>
+                        <div class="feature-text">
+                            <h4>Transparente Kostenaufstellung</h4>
+                            <p>Detaillierte Aufschlüsselung aller Kostenfaktoren für Ihre Bauplanung.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 House Capital - Ihr Partner für die Baufinanzierung</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
