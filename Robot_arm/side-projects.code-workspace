@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"name": "side-projects",
+			"path": ".."
+		},
+		{
+			"path": "../../../../Downloads/STServo_Python/stservo-env/STservo_sdk"
+		}
+	],
+	"settings": {}
+}
