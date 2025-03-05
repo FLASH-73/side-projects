@@ -8,7 +8,7 @@ sys.path.append("..")
 from STservo_sdk import *
 
 # Servo settings
-OLD_ID = 1          # Current servo ID
+OLD_ID = 6          # Current servo ID
 NEW_ID = 2          # Desired new ID
 BAUDRATE = 1000000  # Baudrate for communication
 DEVICENAME = '/dev/cu.usbserial-2140'  # Adjust based on your system (e.g., COM3 on Windows)

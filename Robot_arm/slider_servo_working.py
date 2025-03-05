@@ -22,11 +22,11 @@ sys.path.append("..")
 from STservo_sdk import *  # Uses STServo SDK library
 
 # Default settings
-STS_ID = 2                 # STServo ID: 1
+STS_ID = 4                 # STServo ID: 1
 BAUDRATE = 1000000         # STServo default baudrate: 1 Mbps
 DEVICENAME = '/dev/cu.usbserial-2140'  # Your Mac port
 STS_MINIMUM_POSITION_VALUE = 0
-STS_MAXIMUM_POSITION_VALUE = 8000
+STS_MAXIMUM_POSITION_VALUE = 12288
 STS_MOVING_SPEED = 9000    # Moving speed
 STS_MOVING_ACC = 50        # Moving acceleration
 
