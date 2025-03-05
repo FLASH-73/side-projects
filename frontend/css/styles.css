@@ -1,0 +1,27 @@
+.visualization-container {
+    width: 100%;
+    height: 400px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.parameter-input {
+    margin-bottom: 1rem;
+}
+
+.error-message {
+    color: #dc3545;
+    margin-top: 0.5rem;
+}
+
+.success-message {
+    color: #28a745;
+    margin-top: 0.5rem;
+}
+
+#visualizationArea {
+    width: 100%;
+    height: 100%;
+    background: #f8f9fa;
+}

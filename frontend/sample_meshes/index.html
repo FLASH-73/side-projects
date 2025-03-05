@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Simulation Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <!-- Three.js and its dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="min-h-screen">
+        <nav class="bg-blue-600 text-white p-4">
+            <div class="container mx-auto">
+                <h1 class="text-2xl font-bold">Physics Simulation Platform</h1>
+            </div>
+        </nav>
+
+        <main class="container mx-auto p-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Simulation Configuration -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h2 class="text-xl font-semibold mb-4">Simulation Configuration</h2>
+                    <form id="simulationForm" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Simulation Type</label>
+                            <select id="simulationType" name="simulationType" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                                <option value="fluid_dynamics">Fluid Dynamics</option>
+                                <option value="electromagnetic">Electromagnetic</option>
+                                <option value="stress_analysis">Stress Analysis</option>
+                            </select>
+                        </div>
+                        
+                        <div id="parametersContainer" class="space-y-2">
+                            <!-- Dynamic parameters will be inserted here -->
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Mesh File (Optional)</label>
+                            <input type="file" id="meshFile" accept=".stl" class="mt-1 block w-full">
+                        </div>
+
+                        <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700">
+                            Run Simulation
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Visualization Area -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h2 class="text-xl font-semibold mb-4">Visualization</h2>
+                    <div id="visualizationArea" class="w-full h-96 bg-gray-50 rounded">
+                        <!-- 3D visualization will be rendered here -->
+                    </div>
+                </div>
+
+                <!-- Results Panel -->
+                <div class="bg-white p-6 rounded-lg shadow-lg md:col-span-2">
+                    <h2 class="text-xl font-semibold mb-4">Results</h2>
+                    <div id="resultsPanel" class="space-y-4">
+                        <!-- Results will be displayed here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Load application scripts as modules -->
+    <script src="js/simulationManager.js" type="module"></script>
+    <script src="js/visualizer.js" type="module"></script>
+    <script src="js/app.js" type="module"></script>
+</body>
+</html>
